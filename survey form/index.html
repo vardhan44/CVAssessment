@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #45a9bd;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .main-class{
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .label {
+            font-weight: bold;
+           
+        }
+        .country{
+            width: 623px;
+        }
+        
+        .input {
+            margin-top: 2px;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .checkbox-label {
+            margin-right: 10px;
+        }
+        .feedback{
+            height: 90px;
+        }
+        .button {
+            background-color: #020302;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            box-shadow: 7px 7px rgb(132, 128, 128);
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bolder;
+            font-size: 14px;
+            width: 100px;
+        }
+        .button.reset {
+            background-color: #040404;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            box-shadow: 7px 7px rgb(132, 128, 128);
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bolder;
+            font-size: 14px;
+            width: 100px;
+        }
+        .button:hover {
+           transform: translateY(-1.5px);
+           color: #c45ca5;
+        }
+        .button.reset:hover {
+            transform: translateY(-1.5px);
+            color: #c45ca5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="surveyForm">
+            <div class="main-class">
+                <div class="form-group">
+                    <label class="label">First Name:</label>
+                    <input class="input" type="text" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label class="label">Last Name:</label>
+                    <input class="input" type="text" name="lastName" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label">Date of Birth:</label>
+                <input class="input" type="date" name="dob" required>
+            </div>
+            <div class="form-group country">
+                <label class="label">Country:</label>
+                <select class="input" name="country" required>
+                    <option value="UK">Not Selected</option>
+                    <option value="USA">India</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">USA</option>
+                    <option value="UK">UK</option>
+                    <option value="UK">Russia</option>
+                    <option value="UK">China</option>
+                    <option value="UK">Australia</option>
+                    <option value="UK">New Zealand</option>
+                    <option value="UK">South Africa</option>
+                    <option value="UK">Srilanka</option>
+                    <option value="UK">UAE</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="label">Gender:</label>
+                <label class="checkbox-label"><input type="checkbox" name="gender" value="Male">Male</label>
+                <label class="checkbox-label"><input type="checkbox" name="gender" value="Female">Female</label>
+            </div>
+            <div class="form-group">
+                <label class="label">Profession:</label>
+                <input class="input" type="text" name="profession" required>
+            </div>
+            <div class="form-group">
+                <label class="label">Email:</label>
+                <input class="input" type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label class="label">Mobile Number:</label>
+                <input class="input" type="tel" name="mobile" required>
+            </div>
+            <div class="form-group country">
+                <label class="label">Is this the first time you are using our products and service?</label>
+                <select class="input" name="country" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group country">
+                <label class="label">Would you suggest out company to your family and friends?</label>
+                <select class="input" name="country" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group country">
+                <label class="label">Are you satisfied with our company overall?</label>
+                <select class="input" name="country" required>
+                    <option value="yes">Satisfied</option>
+                    <option value="no">Not satisfied</option>
+                    <option value="no">Not Decided</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="label">Feedback</label>
+                <input class="input feedback" type="text" name="firstName" required>
+            </div>
+            <div class="form-group choose">
+                <button class="button" type="button" onclick="submitForm()">Submit</button>
+                <button class="button reset" type="button" onclick="resetForm()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            const form = document.getElementById('surveyForm');
+            if (form.checkValidity()) {
+                const formData = new FormData(form);
+                let popupContent = "<h2>Survey Data:</h2>";
+                formData.forEach((value, key) => {
+                    popupContent += `<p><strong>${key}:</strong> ${value}</p>`;
+                });
+
+                // Create a popup
+                const popup = window.open('', 'Survey Data', 'width=400,height=400');
+                popup.document.write(popupContent);
+            } else {
+                alert("Please fill out all the required fields.");
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('surveyForm').reset();
+        }
+    </script>
+</body>
+</html>
